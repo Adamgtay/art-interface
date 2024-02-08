@@ -1,5 +1,6 @@
 /***************************************\
 | Art->Text ENCODER / DECODER Text->Art |
+|            by Adam Taylor             |
 \***************************************/ 
 
 Program will handle single and multiline art encoding or decoding.
