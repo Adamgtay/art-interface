@@ -1,4 +1,6 @@
-Art->Text ENCODER / DECODER Text->Art 
+/***************************************\
+| Art->Text ENCODER / DECODER Text->Art |
+\***************************************/ 
 
 Program will handle single and multiline art encoding or decoding.
 
