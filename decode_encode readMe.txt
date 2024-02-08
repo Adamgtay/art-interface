@@ -24,4 +24,4 @@ Usage:
 
 Extra features:
 The program will handle all types of argument errors and return useful
-error messages to assist the user.
+error messages to assist the user, expanding on standard "Error" message.
