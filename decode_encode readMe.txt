@@ -23,5 +23,10 @@ Usage:
 
 
 Extra features:
+
+Error Handling -
 The program will handle all types of argument errors and return useful
 error messages to assist the user, expanding on standard "Error" message.
+
+Usage - 
+Usage flags initiated to assist user
