@@ -145,6 +145,22 @@ func main() {
 
 		containsBrackets := true
 
+		totalLeftbrackets := 0
+		totalRightBrackets := 0
+
+		for _, char := range extractArtSequenceStringFromArgs {
+			if string(char) == "[" {
+				totalLeftbrackets += 1
+			} else if string(char) == "]" {
+				totalRightBrackets += 1
+			}
+		}
+
+		if totalLeftbrackets != totalRightBrackets {
+			fmt.Println("\033[31mError! Unbalanced brackets\033[0m")
+			os.Exit(0)
+		}
+
 		splitSequenceAtRightBracket := strings.SplitAfter(extractArtSequenceStringFromArgs, "]")
 		splitSequenceAtLeftBracket := strings.SplitAfter(extractArtSequenceStringFromArgs, "[")
 
@@ -181,23 +197,6 @@ func main() {
 				splitIntoBracketDataAndSingleData = append(splitIntoBracketDataAndSingleData, splitSequenceAtRightBracket[len(splitSequenceAtRightBracket)-1])
 			}
 
-			// check for uneven square brackets
-			for _, data := range splitIntoBracketDataAndSingleData {
-				if data[0] == '[' || data[len(data)-1] == ']' {
-					if data[0] == '[' {
-						if data[len(data)-1] != ']' {
-							fmt.Println("\033[31mError! Unbalanced brackets:\033[0m", data)
-							os.Exit(0)
-						}
-					} else if data[len(data)-1] == ']' {
-						if data[0] != '[' {
-							fmt.Println("\033[31mError! Unbalanced brackets:\033[0m", data)
-							os.Exit(0)
-						}
-					}
-				}
-			}
-
 			// analyse each string in splitIntoBracketDataAndSingleData to validate structure
 			// [5 #]  <-- regexp to match this where # can one or more of any character (including a space) and 5 can be one or more digits
 			squareBracketRegExpPattern := `\[\d+\s.+?\]`
@@ -225,6 +224,7 @@ func main() {
 					continue
 				}
 			}
+
 			// read each string and print output
 			for _, data := range splitIntoBracketDataAndSingleData {
 				if data[0] == '[' {
