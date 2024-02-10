@@ -145,18 +145,18 @@ func main() {
 
 		containsBrackets := true
 
-		totalLeftbrackets := 0
+		totalLeftBrackets := 0
 		totalRightBrackets := 0
 
 		for _, char := range extractArtSequenceStringFromArgs {
 			if string(char) == "[" {
-				totalLeftbrackets += 1
+				totalLeftBrackets += 1
 			} else if string(char) == "]" {
 				totalRightBrackets += 1
 			}
 		}
 
-		if totalLeftbrackets != totalRightBrackets {
+		if totalLeftBrackets != totalRightBrackets {
 			fmt.Println("\033[31mError! Unbalanced brackets\033[0m")
 			os.Exit(0)
 		}
