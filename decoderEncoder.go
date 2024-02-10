@@ -48,7 +48,7 @@ func main() {
 		if len(args) != 3 && len(args) != 4 {
 			if len(args) < 3 {
 				fmt.Println()
-				fmt.Println("\033[31mError! Missing Argument:\033[0m Miniumum 3 arguments")
+				fmt.Println("\033[31mError! Missing Argument:\033[0m Minimum 3 arguments")
 				fmt.Println()
 				fmt.Println("Usage:")
 				flag.PrintDefaults()
