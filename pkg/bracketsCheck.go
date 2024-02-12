@@ -2,6 +2,7 @@ package art
 
 import "strings"
 
+
 func unbalancedBracketsCheck(inputData string) {
 	totalLeftBrackets := 0
 	totalRightBrackets := 0

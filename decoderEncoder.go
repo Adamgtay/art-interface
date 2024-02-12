@@ -26,7 +26,7 @@ func main() {
 	if (len(args) != 3 && len(args) != 4) || args[1] == "h" {
 		if len(args) != 3 && len(args) != 4 {
 			if len(args) < 3 {
-				art.printError(MISSING_ARG)
+				printError(MISSING_ARG)
 
 			} else {
 				errorData := strings.Join(args[4:], " ")
