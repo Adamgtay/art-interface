@@ -99,3 +99,10 @@ func readStringAndPrint(outputSliceString []string) {
 	fmt.Println()
 
 }
+
+func isDuplicateSymbol(i int, line string) bool {
+	if i == len(line)-1 {
+		return line[i] == line[i-1]
+	}
+	return line[i] == line[i+1]
+}
