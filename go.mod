@@ -1,3 +1,3 @@
-module decoder
+module art
 
 go 1.20
