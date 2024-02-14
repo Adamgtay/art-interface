@@ -106,3 +106,44 @@ func isDuplicateSymbol(i int, line string) bool {
 	}
 	return line[i] == line[i+1]
 }
+
+func ifDuplicateSymbol(i, lineNum, matchCount int, line string, splitStringFromArgs []string) (currentSymbol string, newMatchCount int) {
+	currentSymbol = ""
+	if i == len(line)-1 { // if end of current line
+		if lineNum < len(splitStringFromArgs)-1 {
+			matchCount += 1
+			currentSymbol = fmt.Sprint("[" + strconv.Itoa(matchCount) + " " + string(line[i]) + "]\n")
+
+			matchCount = 0
+		} else { // if last line of input (exclude new line)
+			matchCount += 1
+			currentSymbol = fmt.Sprint("[" + strconv.Itoa(matchCount) + " " + string(line[i]) + "]")
+
+			matchCount = 0
+
+		}
+	} else {
+		matchCount += 1
+	}
+	newMatchCount = matchCount
+
+	return currentSymbol, newMatchCount
+}
+
+func endOfDuplicateSymbols(i, matchCount int, line string) string {
+	currentSymbol := ""
+	matchCount += 1
+	currentSymbol = fmt.Sprint("[" + strconv.Itoa(matchCount) + " " + string(line[i]) + "]")
+
+	return currentSymbol
+}
+
+func ifSingleSymbol(i, lineNum int, line string, splitStringFromArgs []string) string {
+	currentSymbol := ""
+	if i == len(line)-1 && lineNum < len(splitStringFromArgs)-1 { // if end of line and not last line of input
+		currentSymbol = string(line[i]) + "\n" // <-- add newline
+	} else {
+		currentSymbol = string(line[i])
+	}
+	return currentSymbol
+}

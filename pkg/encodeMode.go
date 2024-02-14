@@ -2,7 +2,6 @@ package art
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 )
 
@@ -17,37 +16,16 @@ func EncodeInput(inputString string) {
 		for i := 0; i <= len(line)-1; i++ {
 			duplicateSymbol = isDuplicateSymbol(i, line)
 			if duplicateSymbol {
-				if i == len(line)-1 { // if end of current
-					if lineNum < len(splitStringFromArgs)-1 {
-						matchCount += 1
-						currentSymbol = fmt.Sprint("[" + strconv.Itoa(matchCount) + " " + string(line[i]) + "]\n")
-						finalArtEncoded += currentSymbol
-						duplicateSymbol = false
-						matchCount = 0
-					} else { // if last line of input (exclude new line)
-						matchCount += 1
-						currentSymbol = fmt.Sprint("[" + strconv.Itoa(matchCount) + " " + string(line[i]) + "]")
-						finalArtEncoded += currentSymbol
-						duplicateSymbol = false
-						matchCount = 0
-
-					}
-				} else {
-					matchCount += 1
-				}
+				currentSymbol, matchCount = ifDuplicateSymbol(i, lineNum, matchCount, line, splitStringFromArgs)
+				finalArtEncoded += currentSymbol
+				duplicateSymbol = false
 			} else if !duplicateSymbol && matchCount > 0 {
-				matchCount += 1
-				currentSymbol = fmt.Sprint("[" + strconv.Itoa(matchCount) + " " + string(line[i]) + "]")
+				currentSymbol = endOfDuplicateSymbols(i, matchCount, line)
 				finalArtEncoded += currentSymbol
 				matchCount = 0
 			} else if !duplicateSymbol && matchCount == 0 {
-				if i == len(line)-1 && lineNum < len(splitStringFromArgs)-1 {
-					currentSymbol = string(line[i]) + "\n"
-					finalArtEncoded += currentSymbol
-				} else {
-					currentSymbol = string(line[i])
-					finalArtEncoded += currentSymbol
-				}
+				currentSymbol = ifSingleSymbol(i, lineNum, line, splitStringFromArgs)
+				finalArtEncoded += currentSymbol
 			}
 		}
 	}
