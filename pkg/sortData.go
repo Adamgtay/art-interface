@@ -8,39 +8,39 @@ import (
 
 func sortBracketedAndNonBracketedStrings(inputSliceString []string) []string {
 
-	var outputSliceString []string // sort into bracketed and non-bracketed strings
+	var sliceString []string // sort into bracketed and non-bracketed strings
 
 	for _, section := range inputSliceString {
 		for i, char := range section {
 			if i > 0 && char == '[' {
-				outputSliceString = append(outputSliceString, section[:i])
-				outputSliceString = append(outputSliceString, section[i:])
+				sliceString = append(sliceString, section[:i])
+				sliceString = append(sliceString, section[i:])
 				break
 
 			} else if char == '[' {
-				outputSliceString = append(outputSliceString, section[i:])
+				sliceString = append(sliceString, section[i:])
 				break
 			}
 		}
 	}
 
-	return outputSliceString
+	return sliceString
 
 }
 
-func useRegExToValidateData(outputSliceString []string) {
-	// analyse each string in outputSliceString to validate structure
+func useRegExToValidateData(sliceString []string) {
+	// analyse each string in sliceString to validate structure
 	// [5 #]  <-- regexp to match this where # can one or more of any character (including a space) and 5 can be one or more digits
 	squareBracketRegExpPattern := `\[\d+\s.+?\]`
 
 	squareBracketRegExpPatternCompile := regexp.MustCompile(squareBracketRegExpPattern)
 	newLineCount := 1
 
-	for _, data := range outputSliceString {
+	for _, data := range sliceString {
 		if data[0] == '[' {
 			validDataStructure := squareBracketRegExpPatternCompile.FindAllStringSubmatch(data, -1)
 			if validDataStructure == nil {
-				if len(outputSliceString) > 1 { // is multiline
+				if len(sliceString) > 1 { // is multiline
 					errorData := data + "check line:" + strconv.Itoa(newLineCount)
 					PrintError(FORMAT_ERROR, errorData)
 				} else {
@@ -58,9 +58,9 @@ func useRegExToValidateData(outputSliceString []string) {
 
 }
 
-func readStringAndPrint(outputSliceString []string) {
+func readStringAndPrint(sliceString []string) {
 	// read each string and print output
-	for _, data := range outputSliceString {
+	for _, data := range sliceString {
 		if data[0] == '[' {
 			// bracketed data
 			var extractedDigits string
