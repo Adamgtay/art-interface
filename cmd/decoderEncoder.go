@@ -24,17 +24,17 @@ func main() {
 
 	flag.Parse()
 
-	if (len(args) != 3 && len(args) != 4) || args[1] == "h" {
-		if len(args) != 3 && len(args) != 4 {
+	if (len(args) != 3 && len(args) != 4) || args[1] == "-h" {
+		if args[1] == "-h" {
+			art.PrintUsage()
+		} else if len(args) != 3 && len(args) != 4 {
 			if len(args) < 3 {
 				art.PrintError(art.MISSING_ARG)
-
 			} else {
 				errorData := strings.Join(args[4:], " ")
 				art.PrintError(art.EXTRA_ARG, errorData)
 			}
 		}
-		art.PrintUsage()
 	}
 
 	args = args[1:]
