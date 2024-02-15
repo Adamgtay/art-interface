@@ -20,7 +20,7 @@
           multi-line decode mode: $ go run . ./filepath -d -m
           multi-line encode mode: $ go run . ./filepath -e -m
     
-      -m    Enable multi-line mode
+    -m    Enable multi-line mode
 
 ## Test Examples:
 
@@ -36,4 +36,10 @@
 ### Output: 
 
   ![Reference Image](screenshots/Screenshot%202024-02-15%20at%2010.30.00.png)
-  
+
+### Input:
+      $ go run . ./lion.art.txt -e -m
+
+### Output: 
+
+  ![Reference Image](screenshots/Screenshot%202024-02-15%20at%2010.37.25.png)        
