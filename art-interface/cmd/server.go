@@ -6,7 +6,6 @@ import (
 	"net/http"
 )
 
-// PageData holds the data to be rendered in the HTML template
 type PageData struct {
 	Output string
 }
