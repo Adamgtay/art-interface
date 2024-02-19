@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Input Example</title>
+</head>
+<body>
+    <h1>User Input Example</h1>
+    <form action="/" method="post">
+        <label for="input">Enter your input:</label><br>
+        <input type="text" id="input" name="input"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    {{ if .Output }}
+        <h2>Output:</h2>
+        <p>{{ .Output }}</p>
+    {{ end }}
+</body>
+</html>
