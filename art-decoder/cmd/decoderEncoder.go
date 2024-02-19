@@ -1,7 +1,7 @@
 package main
 
 import (
-	art "art/pkg/art"
+	art "art/art-decoder/pkg/art"
 	"flag"
 	"os"
 	"strings"
