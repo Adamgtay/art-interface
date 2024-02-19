@@ -25,18 +25,29 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		// Get the value of the "input" field from the form
 		userInput := r.Form.Get("input")
+		isMalformed := false
+		var output string
 
 		// Decode the input
-		output := art.DecodeInput(userInput)
+		output, isMalformed = art.DecodeInput(userInput)
 
-		// Create a PageData struct with the decoded value
-		data := PageData{
-			Output: output,
+		if isMalformed {
+			http.Error(w, "Bad Request", http.StatusBadRequest)
+			return
+		} else {
+			fmt.Println("HTTP/1.1 202 Accepted")
+
+			// Create a PageData struct with the decoded value
+			data := PageData{
+				Output: output,
+			}
+
+			// Render the HTML template with the PageData
+			tmpl := template.Must(template.ParseFiles("index.html"))
+			tmpl.Execute(w, data)
+
 		}
 
-		// Render the HTML template with the PageData
-		tmpl := template.Must(template.ParseFiles("index.html"))
-		tmpl.Execute(w, data)
 	} else {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}

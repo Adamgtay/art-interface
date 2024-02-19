@@ -1,10 +1,13 @@
-package art
+package art_interf
 
-import "fmt"
+func DecodeInput(inputString string) (string, bool) {
 
-func DecodeInput(inputString string) {
+	var output string
 
 	unbalancedBracketsCheck(inputString)
+	if !unbalancedBracketsCheck(inputString) {
+		return inputString, true
+	}
 	splitSequenceAtRightBracket, containsBrackets := containsBrackets(inputString)
 
 	if containsBrackets {
@@ -23,11 +26,13 @@ func DecodeInput(inputString string) {
 
 		useRegExToValidateData(splitIntoBracketDataAndSingleData)
 
-		readStringAndPrint(splitIntoBracketDataAndSingleData)
+		output = readString(splitIntoBracketDataAndSingleData)
 
 	} else {
 		// here logic if no brackets in input
-		fmt.Println(inputString)
+		output = inputString
 	}
+
+	return output, false
 
 }
