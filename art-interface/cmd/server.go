@@ -13,8 +13,13 @@ type PageData struct {
 
 // indexHandler handles requests to the root URL ("/")
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	// Check if the request method is POST
-	if r.Method == "POST" {
+	if r.Method == "GET" {
+
+		// Serve the HTML form
+		http.ServeFile(w, r, "index.html")
+
+		// Check if the request method is POST
+	} else if r.Method == "POST" {
 		// Parse the form data
 		err := r.ParseForm()
 		if err != nil {
@@ -27,7 +32,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		// Process the user input (e.g., perform some computation)
 		// For this example, let's simply echo back the input
-		output := userInput
+		output := userInput + " understood"
 
 		// Create a PageData struct with the output
 		data := PageData{
@@ -38,8 +43,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("index.html"))
 		tmpl.Execute(w, data)
 	} else {
-		// If the request method is not POST, serve the HTML form
-		http.ServeFile(w, r, "index.html")
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
 }
 
