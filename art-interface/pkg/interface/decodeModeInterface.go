@@ -4,10 +4,11 @@ func DecodeInput(inputString string) (string, bool) {
 
 	var output string
 
-	unbalancedBracketsCheck(inputString)
-	if !unbalancedBracketsCheck(inputString) {
-		return inputString, true
+	isMalformed := unbalancedBracketsCheck(inputString)
+	if isMalformed {
+		return output, true
 	}
+
 	splitSequenceAtRightBracket, containsBrackets := containsBrackets(inputString)
 
 	if containsBrackets {

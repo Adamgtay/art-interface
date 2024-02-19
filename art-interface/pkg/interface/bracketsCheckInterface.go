@@ -1,8 +1,10 @@
-package art
+package art_interf
 
-import "strings"
+import (
+	"strings"
+)
 
-func unbalancedBracketsCheck(inputData string) {
+func unbalancedBracketsCheck(inputData string) bool {
 	totalLeftBrackets := 0
 	totalRightBrackets := 0
 
@@ -15,8 +17,9 @@ func unbalancedBracketsCheck(inputData string) {
 	}
 
 	if totalLeftBrackets != totalRightBrackets {
-		PrintError(UNBALANCED_BRACKETS)
+		return true
 	}
+	return false
 }
 
 func containsBrackets(extractArtSequenceStringFromArgs string) ([]string, bool) {

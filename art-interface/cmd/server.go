@@ -1,7 +1,7 @@
 package main
 
 import (
-	art "art/art-decoder/pkg/art"
+	art_interf "art/art-interface/pkg/interface"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -29,7 +29,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		var output string
 
 		// Decode the input
-		output, isMalformed = art.DecodeInput(userInput)
+		output, isMalformed = art_interf.DecodeInput(userInput)
 
 		if isMalformed {
 			http.Error(w, "Bad Request", http.StatusBadRequest)
