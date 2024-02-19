@@ -58,7 +58,8 @@ func useRegExToValidateData(sliceString []string) {
 
 }
 
-func readStringAndPrint(sliceString []string) {
+func readString(sliceString []string) string {
+	var output string
 	// read each string and print output
 	for _, data := range sliceString {
 		if data[0] == '[' {
@@ -89,14 +90,14 @@ func readStringAndPrint(sliceString []string) {
 				PrintError(FORMAT_ERROR, extractedDigits)
 			} else {
 				for x := 0; x < extractedDigitsInteger; x++ {
-					fmt.Print(extractedSymbols)
+					output += extractedSymbols
 				}
 			}
 		} else {
-			fmt.Print(data) // print unbracketed data
+			output += data // print unbracketed data
 		}
 	}
-	fmt.Println()
+	return output
 
 }
 

@@ -3,6 +3,7 @@ package main
 import (
 	art "art/art-decoder/pkg/art"
 	"flag"
+	"fmt"
 	"os"
 	"strings"
 )
@@ -82,8 +83,11 @@ func main() {
 		extractArtSequenceStringFromArgs = args[0]
 	}
 
+	var output string
+
 	if decodeMode {
-		art.DecodeInput(extractArtSequenceStringFromArgs)
+		output = art.DecodeInput(extractArtSequenceStringFromArgs)
+		fmt.Println(output)
 
 	}
 

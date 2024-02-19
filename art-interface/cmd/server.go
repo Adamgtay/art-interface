@@ -1,6 +1,7 @@
 package main
 
 import (
+	art "art/art-decoder/pkg/art"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -10,16 +11,12 @@ type PageData struct {
 	Output string
 }
 
-// indexHandler handles requests to the root URL ("/")
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-
-		// Serve the HTML form
+		fmt.Println("HTTP/1.1 200 OK")
 		http.ServeFile(w, r, "index.html")
 
-		// Check if the request method is POST
 	} else if r.Method == "POST" {
-		// Parse the form data
 		err := r.ParseForm()
 		if err != nil {
 			http.Error(w, "Error parsing form data", http.StatusInternalServerError)
@@ -29,11 +26,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		// Get the value of the "input" field from the form
 		userInput := r.Form.Get("input")
 
-		// Process the user input (e.g., perform some computation)
-		// For this example, let's simply echo back the input
-		output := userInput + " understood"
+		// Decode the input
+		output := art.DecodeInput(userInput)
 
-		// Create a PageData struct with the output
+		// Create a PageData struct with the decoded value
 		data := PageData{
 			Output: output,
 		}
@@ -44,15 +40,15 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
+
 }
 
 func main() {
 	// Register the indexHandler function to handle requests to the root URL ("/")
 	http.HandleFunc("/", indexHandler)
 
-	// Start the HTTP server on port 8080
-	fmt.Println("Server is running on port 8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		fmt.Println("Error starting server:", err)
 	}
+
 }

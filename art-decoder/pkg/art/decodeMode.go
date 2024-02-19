@@ -1,8 +1,8 @@
 package art
 
-import "fmt"
+func DecodeInput(inputString string) string {
 
-func DecodeInput(inputString string) {
+	var output string
 
 	unbalancedBracketsCheck(inputString)
 	splitSequenceAtRightBracket, containsBrackets := containsBrackets(inputString)
@@ -23,11 +23,13 @@ func DecodeInput(inputString string) {
 
 		useRegExToValidateData(splitIntoBracketDataAndSingleData)
 
-		readStringAndPrint(splitIntoBracketDataAndSingleData)
+		output = readString(splitIntoBracketDataAndSingleData)
 
 	} else {
 		// here logic if no brackets in input
-		fmt.Println(inputString)
+		output = inputString
 	}
+
+	return output
 
 }
