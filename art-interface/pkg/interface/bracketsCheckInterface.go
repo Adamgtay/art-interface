@@ -16,10 +16,7 @@ func unbalancedBracketsCheck(inputData string) bool {
 		}
 	}
 
-	if totalLeftBrackets != totalRightBrackets {
-		return true
-	}
-	return false
+	return totalLeftBrackets != totalRightBrackets
 }
 
 func containsBrackets(extractArtSequenceStringFromArgs string) ([]string, bool) {
