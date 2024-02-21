@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Input Example</title>
+    <style>
+        /* CSS styles */
+        h1 {
+            color: white;
+            font-family: 'VictorMono-Medium',regular; /* Change the font family here */
+            font-size: 35px;
+            line-height: 1.5; /* Adjust the line height */
+        }
+        h2 {
+            color: yellow;
+            font-family: 'VictorMono-Medium',regular; /* Change the font family here */
+            line-height: 1.5; /* Adjust the line height */
+            font-size: 25px;
+        }
+        h3 {
+            color: yellow;
+            font-family: 'VictorMono-Medium',regular; /* Change the font family here */
+            font-size: 12px;
+            line-height: 1.5; /* Adjust the line height */
+        }
+        body {
+            text-align: center;
+            background-color: #000;
+            font-size: 16px;
+        }
+    </style>
+    <link rel="stylesheet" href="../dist/css/styles.css">
 </head>
 <body>
-    <h1>User Input Example</h1>
-    <form action="/" method="post">
+    <h2>*-----------------------------*</h2>
+    <h3>////////////////////////////////////////////////////////////</h3>
+    <h1>TEXT -> ART DECODER</h1>
+    <h3>////////////////////////////////////////////////////////////</h3>
+    <h2>*-----------------------------*</h2>
+    
+    <form action="/" method="post" enctype="multipart/form-data">
         <label for="input">Enter your input:</label><br>
         <input type="text" id="input" name="input"><br><br>
+        <label for="fileUpload">Or upload a .txt file:</label><br>
+        <input type="file" id="fileUpload" name="fileUpload" accept=".txt"><br><br>
         <input type="submit" value="Generate">
     </form>
     {{ if .Output }}

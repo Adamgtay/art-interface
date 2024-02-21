@@ -26,10 +26,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		// Get the value of the "input" field from the form
 		userInput := r.Form.Get("input")
 		isMalformed := false
-		var output string
+		var decodedOutput string
 
 		// Decode the input
-		output, isMalformed = art_interf.DecodeInput(userInput)
+		decodedOutput, isMalformed = art_interf.DecodeInput(userInput)
 
 		if isMalformed {
 			http.Error(w, "Bad Request", http.StatusBadRequest)
@@ -38,13 +38,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("HTTP/1.1 202 Accepted")
 
 			// Create a PageData struct with the decoded value
-			data := PageData{
-				Output: output,
+			decodedData := PageData{
+				Output: decodedOutput,
 			}
 
 			// Render the HTML template with the PageData
-			tmpl := template.Must(template.ParseFiles("index.html"))
-			tmpl.Execute(w, data)
+			newHtmlTemplate := template.Must(template.ParseFiles("index.html"))
+			newHtmlTemplate.Execute(w, decodedData)
 
 		}
 
