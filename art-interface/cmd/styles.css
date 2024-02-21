@@ -1,14 +1,6 @@
-/* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    text-align: center;
-}
-
-h1 {
-    font-family: VT323, sans-serif;
-    color: #007bff;
-    font-size: 36px;
-    margin-top: 50px;
+@font-face {
+  font-family: 'VictorMono-Medium';
+  src: url('http://127.0.0.1:3000/art-interface/fonts/VictorMono-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
