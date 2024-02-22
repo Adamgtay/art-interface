@@ -7,6 +7,8 @@ import (
 	"net/http"
 )
 
+// newlines are spaces - maybe adjust my decode code to convert?
+
 type PageData struct {
 	Output string
 }

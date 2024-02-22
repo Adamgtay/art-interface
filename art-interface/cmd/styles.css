@@ -1,6 +1,62 @@
 @font-face {
-  font-family: 'VictorMono-Medium';
-  src: url('http://127.0.0.1:3000/art-interface/fonts/VictorMono-Bold.woff') format('woff');
+  font-family: 'dogica';
+  src: url('http://127.0.0.1:3000/art-interface/fonts/Menlo.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+/* styles.css */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-family: 'Menlo';
+  text-align: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+h2 {
+  margin-top: 20px;
 }
