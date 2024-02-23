@@ -6,4 +6,5 @@
  - Run command: $ go run .
  - Open http://localhost:8080/ in web browser
  - Insert text to be encoded or decoded
+ - Select mode
  - Webpage displays result

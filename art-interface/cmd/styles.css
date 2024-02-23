@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'dogica';
-  src: url('http://127.0.0.1:3000/art-interface/fonts/Menlo.ttf') format('truetype');
+  font-family: 'VictorMono-Bold';
+  src: url('http://127.0.0.1:3000/art-interface/fonts/VictorMono-Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,7 +23,7 @@ body {
 }
 
 h1 {
-  font-family: 'Menlo';
+  font-family: 'VictorMono-Bold';
   text-align: center;
 }
 

@@ -14,7 +14,12 @@ type PageData struct {
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		fmt.Println("HTTP/1.1 200 OK")
-		http.ServeFile(w, r, "index.html")
+
+		err := templates.ExecuteTemplate(w, "index.html", nil)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 	} else if r.Method == "POST" {
 		err := r.ParseForm()
 		if err != nil {
@@ -54,7 +59,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
+
 }
+
+var templates = template.Must(template.ParseFiles("index.html"))
 
 func main() {
 	// Register the indexHandler function to handle requests to the root URL ("/")
