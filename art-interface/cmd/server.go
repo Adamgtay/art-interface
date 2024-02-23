@@ -27,10 +27,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		isMalformed := false
 		var output string
 
-		decodeMode := art_interf.ReturnTrueIfDecodeMode(userInput)
+		mode := r.Form.Get("mode") // read radio button selection
 
-		// Decode the input
-		if decodeMode {
+		// Encode or decode based on the selected mode
+		if mode == "decode" {
 			output, isMalformed = art_interf.DecodeInput(userInput)
 		} else {
 			output = art_interf.EncodeInput(userInput)
@@ -46,7 +46,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			processedData := PageData{
 				Output: output,
 			}
-			// Render the HTML template with the PageData
+			// HTML template with new PageData
 			newHtmlTemplate := template.Must(template.ParseFiles("index.html"))
 			newHtmlTemplate.Execute(w, processedData)
 		}
