@@ -28,7 +28,7 @@ func sortBracketedAndNonBracketedStrings(inputSliceString []string) []string {
 
 }
 
-func useRegExToValidateData(sliceString []string) {
+func useRegExToValidateData(sliceString []string) bool {
 	// analyse each string in sliceString to validate structure
 	// [5 #]  <-- regexp to match this where # can one or more of any character (including a space) and 5 can be one or more digits
 	squareBracketRegExpPattern := `\[\d+\s.+?\]`
@@ -41,10 +41,10 @@ func useRegExToValidateData(sliceString []string) {
 			validDataStructure := squareBracketRegExpPatternCompile.FindAllStringSubmatch(data, -1)
 			if validDataStructure == nil {
 				if len(sliceString) > 1 { // is multiline
-					errorData := data + "check line:" + strconv.Itoa(newLineCount)
-					PrintError(FORMAT_ERROR, errorData)
+					//errorData := data + "check line:" + strconv.Itoa(newLineCount)
+					return true // isMalform is true
 				} else {
-					PrintError(FORMAT_ERROR, data)
+					return true // isMalform is true
 				}
 			} else {
 				continue
@@ -55,10 +55,10 @@ func useRegExToValidateData(sliceString []string) {
 			continue
 		}
 	}
-
+	return false
 }
 
-func readString(sliceString []string) string {
+func readString(sliceString []string) (string, bool) {
 	var output string
 	// read each strin
 	for _, data := range sliceString {
@@ -87,7 +87,8 @@ func readString(sliceString []string) string {
 			// method to convert extractedDigits into single integer
 			extractedDigitsInteger, err := strconv.Atoi(extractedDigits)
 			if err != nil {
-				PrintError(FORMAT_ERROR, extractedDigits)
+				//PrintError(FORMAT_ERROR, extractedDigits)
+				return output, true
 			} else {
 				for x := 0; x < extractedDigitsInteger; x++ {
 					output += extractedSymbols
@@ -97,7 +98,7 @@ func readString(sliceString []string) string {
 			output += data // print unbracketed data
 		}
 	}
-	return output
+	return output, false
 }
 
 func isDuplicateSymbol(i int, line string) bool {

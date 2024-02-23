@@ -1,12 +1,11 @@
 package art_interf
 
 import (
-	"fmt"
 	"strings"
 )
 
 // split into smaller functions
-func EncodeInput(inputString string) {
+func EncodeInput(inputString string) string {
 	var finalArtEncoded string
 	var currentSymbol string
 	splitStringFromArgs := strings.Split(inputString, "\n")
@@ -31,9 +30,7 @@ func EncodeInput(inputString string) {
 	}
 	if finalArtEncoded[len(finalArtEncoded)-1] == '\n' {
 		finalArtEncoded = finalArtEncoded[:len(finalArtEncoded)-1]
-		fmt.Println(finalArtEncoded)
-	} else {
-		fmt.Println(finalArtEncoded)
+		//fmt.Println(finalArtEncoded)
 	}
-
+	return finalArtEncoded
 }

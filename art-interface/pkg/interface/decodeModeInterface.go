@@ -3,8 +3,9 @@ package art_interf
 func DecodeInput(inputString string) (string, bool) {
 
 	var output string
+	var isMalformed bool
 
-	isMalformed := unbalancedBracketsCheck(inputString)
+	isMalformed = unbalancedBracketsCheck(inputString)
 	if isMalformed {
 		return output, true
 	}
@@ -25,9 +26,15 @@ func DecodeInput(inputString string) (string, bool) {
 			splitIntoBracketDataAndSingleData = append(splitIntoBracketDataAndSingleData, splitSequenceAtRightBracket[len(splitSequenceAtRightBracket)-1])
 		}
 
-		useRegExToValidateData(splitIntoBracketDataAndSingleData)
+		isMalformed = useRegExToValidateData(splitIntoBracketDataAndSingleData)
+		if isMalformed {
+			return output, true
+		}
 
-		output = readString(splitIntoBracketDataAndSingleData)
+		output, isMalformed = readString(splitIntoBracketDataAndSingleData)
+		if isMalformed {
+			return output, true
+		}
 
 	} else {
 		// here logic if no brackets in input

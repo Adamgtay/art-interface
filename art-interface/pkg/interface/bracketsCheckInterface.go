@@ -31,3 +31,12 @@ func containsBrackets(extractArtSequenceStringFromArgs string) ([]string, bool) 
 	}
 
 }
+
+func ReturnTrueIfDecodeMode(input string) bool {
+	for _, char := range input {
+		if char == '[' || char == ']' {
+			return true
+		}
+	}
+	return false
+}

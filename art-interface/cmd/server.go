@@ -7,8 +7,6 @@ import (
 	"net/http"
 )
 
-// newlines are spaces - maybe adjust my decode code to convert?
-
 type PageData struct {
 	Output string
 }
@@ -17,7 +15,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		fmt.Println("HTTP/1.1 200 OK")
 		http.ServeFile(w, r, "index.html")
-
 	} else if r.Method == "POST" {
 		err := r.ParseForm()
 		if err != nil {
@@ -28,10 +25,16 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		// Get the value of the "input" field from the form
 		userInput := r.Form.Get("input")
 		isMalformed := false
-		var decodedOutput string
+		var output string
+
+		decodeMode := art_interf.ReturnTrueIfDecodeMode(userInput)
 
 		// Decode the input
-		decodedOutput, isMalformed = art_interf.DecodeInput(userInput)
+		if decodeMode {
+			output, isMalformed = art_interf.DecodeInput(userInput)
+		} else {
+			output = art_interf.EncodeInput(userInput)
+		}
 
 		if isMalformed {
 			http.Error(w, "Bad Request", http.StatusBadRequest)
@@ -40,20 +43,17 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("HTTP/1.1 202 Accepted")
 
 			// Create a PageData struct with the decoded value
-			decodedData := PageData{
-				Output: decodedOutput,
+			processedData := PageData{
+				Output: output,
 			}
-
 			// Render the HTML template with the PageData
 			newHtmlTemplate := template.Must(template.ParseFiles("index.html"))
-			newHtmlTemplate.Execute(w, decodedData)
-
+			newHtmlTemplate.Execute(w, processedData)
 		}
 
 	} else {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
-
 }
 
 func main() {
@@ -63,5 +63,4 @@ func main() {
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		fmt.Println("Error starting server:", err)
 	}
-
 }
