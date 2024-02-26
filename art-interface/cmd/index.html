@@ -7,21 +7,50 @@
     <link rel="stylesheet" href="http://127.0.0.1:3000/art-interface/cmd/styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <h1>Art Interface</h1>
         <form action="/" method="POST">
-            <label for="input">Enter Text Here:</label><br>
-            <textarea id="input" name="input" rows="4" cols="50" style="resize: both;"></textarea><br><br>
-            <input type="radio" id="encode" name="mode" value="encode" checked>
-            <label for="encode">Encode</label><br>
-            <input type="radio" id="decode" name="mode" value="decode">
-            <label for="decode">Decode</label><br><br>
-            <input type="submit" value="Submit">
+            <label for="input">Input Text</label><br>
+            <textarea id="input" name="input" rows="10" cols="100" style="resize: both; width: 100%;"></textarea><br><br>
+            <div class="radio-button-container">
+                <input type="radio" id="encode" name="mode" value="encode" class="custom-radio">
+                <label for="encode" class="custom-radio-label">Encode</label>
+                <input type="radio" id="decode" name="mode" value="decode" class="custom-radio">
+                <label for="decode" class="custom-radio-label">Decode</label>
+            </div>
+            <br>
+            <input type="submit" value="Submit" class="submit-button">
         </form>
-        {{if .Output}}
-            <h2>Output:</h2>
-            <pre>{{.Output}}</pre>
-        {{end}}
+        <!-- Output container -->
+        <div class="output-container" id="outputContainer">
+            {{if .Output}}
+                <h2>Output</h2>
+                <pre>{{.Output}}</pre>
+                <script>
+                    // Scroll to the output container
+                    document.getElementById('outputContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                </script>
+            {{end}}
+        </div>
     </div>
+
+    <button id="scrollBtn" onclick="scrollToTop()">Back To Top</button>
+
+    <script>
+        function scrollToTop() {
+            document.documentElement.scrollTop = 0; // Scroll to top of the document
+            document.body.scrollTop = 0; // For older browsers
+        }
+
+        // Show or hide scroll button based on container scroll position
+        document.getElementById('container').addEventListener('scroll', function() {
+            var scrollBtn = document.getElementById('scrollBtn');
+            if (this.scrollTop > 20) {
+                scrollBtn.style.display = "block";
+            } else {
+                scrollBtn.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
