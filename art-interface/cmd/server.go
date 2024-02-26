@@ -67,8 +67,10 @@ var templates = template.Must(template.ParseFiles("index.html"))
 func main() {
 	// Register the indexHandler function to handle requests to the root URL ("/")
 	http.HandleFunc("/", indexHandler)
+	fmt.Println("Copy and paste into web browser -> \033[33mhttp://localhost:8080/\033[0m")
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		fmt.Println("Error starting server:", err)
 	}
+
 }
