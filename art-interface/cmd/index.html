@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="grid-container">
-        <div class="yellow-tab">Art Interface</div>
+        <div class="yellow-tab"></div>
         <div class="header">Art Interface</div>
         <div class="options">
             <!-- Options section -->
@@ -17,20 +17,19 @@
                 <label for="encode">Encode</label>
                 <input type="radio" name="mode" value="decode" id="decode">
                 <label for="decode">Decode</label>
+                <div class="input-section">
+                    <!-- Input section -->
+                    <textarea name="input" placeholder="Enter text here..." rows="4"></textarea>
+                </div>
                 <button type="submit">Submit</button>
+                <!-- Output section -->
+                <div class="output-section">
+                    {{if .Output}}
+                    <h2>Decoded Output:</h2>
+                    <pre>{{.Output}}</pre>
+                    {{end}}
+                </div>
             </form>
-        </div>
-        <div class="main-content">
-            <div class="input-section">
-                <!-- Input section -->
-                <textarea name="input" placeholder="Enter text here..." rows="4"></textarea>
-            </div>
-            <div class="output-section">
-                {{if .Output}}
-                <h2>Decoded Output:</h2>
-                <pre>{{.Output}}</pre>
-                {{end}}
-            </div>
         </div>
         <div class="footer">Art Interface by Adam Taylor</div>
     </div>

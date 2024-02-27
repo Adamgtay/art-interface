@@ -37,7 +37,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		// Encode or decode based on the selected mode
 		if mode == "decode" {
 			output, isMalformed = art_interf.DecodeInput(userInput)
-			fmt.Println(userInput)
 		} else {
 			output = art_interf.EncodeInput(userInput)
 		}
@@ -47,7 +46,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		} else {
 			fmt.Println("HTTP/1.1 202 Accepted")
-			fmt.Println(output)
 
 			// Create a PageData struct with the decoded value
 			processedData := PageData{
@@ -61,7 +59,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			}
 
 			newHtmlTemplate.Execute(w, processedData)
-			fmt.Println(output)
 		}
 
 	} else {
