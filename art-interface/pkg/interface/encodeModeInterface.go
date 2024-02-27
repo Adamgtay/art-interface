@@ -28,9 +28,9 @@ func EncodeInput(inputString string) string {
 			}
 		}
 	}
-	if finalArtEncoded[len(finalArtEncoded)-1] == '\n' {
-		finalArtEncoded = finalArtEncoded[:len(finalArtEncoded)-1]
-		//fmt.Println(finalArtEncoded)
-	}
+	//if finalArtEncoded[len(finalArtEncoded)-1] == '\n' {
+	//finalArtEncoded = finalArtEncoded[:len(finalArtEncoded)-1]
+	//fmt.Println(finalArtEncoded)
+
 	return finalArtEncoded
 }
