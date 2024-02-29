@@ -24,18 +24,18 @@ body, html {
   padding: 0;
   height: 100%;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  justify-content: center;
+  align-items: center; 
 }
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 1 column for sidebar, 1 column for main content */
-  grid-template-rows: 20px 60px auto 20px; /* Full viewport height */
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 20px 60px auto 20px; 
   height: auto;
-  width: calc(90vw - 40px); /* Full viewport width with 20px padding on both sides */
+  width: calc(90vw - 40px);
   border: solid #5c3faa;
   border-width: 1px;
-  margin: 0 10px; /* Apply 20px padding on both left and right sides */
+  margin: 0 10px;
 }
 
 
@@ -46,7 +46,7 @@ body, html {
 }
 
 .header {
-  grid-column: 1 / 3; /* Span across both columns */
+  grid-column: 1 / 3; 
   background-color: #ffffff;
   color: #423c3d;
   height: 50px;
@@ -57,7 +57,7 @@ body, html {
 }
 
 .yellow-tab{
-  grid-column: 1 / 3; /* Span across both columns */
+  grid-column: 1 / 3; 
   background-color: #fee98e;
   grid-row: 1 / 2;
 
@@ -66,25 +66,24 @@ body, html {
 .options {
   background-color: #ffffff;
   grid-row: 3 / 5;
-  grid-column: 1 / 3; /* Span across both columns */
+  grid-column: 1 / 3; 
   display: grid;
-  gap: 20px; /* Gap between input and output */
+  gap: 20px; 
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  align-items: center; /* Vertically center align items */
-  justify-items: center; /* Horizontally center align items */
+  align-items: center; 
+  justify-items: center; 
   justify-content: space-between;
   font-size: 14px;
   font-family: 'Menlo';
 }
 
-/* Hide the radio buttons */
+
 input[type="radio"] {
   display: none;
 
 }
 
-/* Style the labels to mimic radio buttons */
 input[type="radio"] + label {
   display: inline-block;
   padding: 4px 16px;
@@ -98,35 +97,34 @@ input[type="radio"] + label {
   
 }
 
-/* Style the labels when radio buttons are checked */
 input[type="radio"]:checked + label {
   background-color: #ffa9fe;
   color: #423c3d;
 
 }
 
-/* Style the labels when radio buttons are checked */
+
 input[type="radio"]+label:hover {
   background-color: #dad3ff;
   color: #423c3d;
 
 }
 
-/* Style the submit button */
+
 .submit-button {
-  padding: 4px 20px; /* Adjust padding as needed */
-  background-color: #ffffff; /* Button background color */
-  color: #423c3d; /* Button text color */
-  border: solid #5436a6; /* Remove button border */
+  padding: 4px 20px; 
+  background-color: #ffffff; 
+  color: #423c3d; 
+  border: solid #5436a6; 
   border-width: 1px;
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+  cursor: pointer; 
+  transition: background-color 0.3s, color 0.3s; 
   font-family: 'Menlo';
   font-size: 14px;
 }
 
 .submit-button:hover {
-  background-color: #dad3ff; /* Darker shade of the background color */
+  background-color: #dad3ff; 
 }
 
 
@@ -134,55 +132,55 @@ input[type="radio"]+label:hover {
   grid-column: 1 / 2;
   margin-top: 20px;
   margin-bottom: 20px;
-  height: 100px; /* Set the height as needed */
+  height: 100px; 
 
 }
 
 textarea {
-  width: calc(100% - 20px); /* 100% width minus the total padding of the input section */
-  height: calc(100% - 20px); /* Fixed height */
+  width: calc(100% - 20px); 
+  height: calc(100% - 20px); 
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  resize: none; /* Prevent resizing */
+  resize: none; 
   font-family: 'Menlo';
   font-size: 14px;
   line-height: 1.5;
   color: #333;
   background-color: #f8f8f8;
-  overflow-y: auto; /* Introduce vertical scrollbar when content overflows vertically */
-  overflow-x: auto; /* Introduce horizontal scrollbar when content overflows horizontally */
-  white-space: nowrap; /* Prevent text wrapping */
+  overflow-y: auto; 
+  overflow-x: auto; 
+  white-space: nowrap; 
 }
 textarea:focus {
-  outline: none; /* Remove the default focus outline */
-  border-color: #5c3faa; /* Change border color when focused */
+  outline: none; 
+  border-color: #5c3faa; 
 }
 
 .output-section {
   grid-column: 2 / 3;
-  height: 100px; /* Set the height as needed */
-  width: calc(100% - 20px); /* 100% width minus the total padding of the input section */
+  height: 100px; 
+  width: calc(100% - 20px); 
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  resize: none; /* Prevent resizing */
+  resize: none; 
   font-family: 'Menlo';
   font-size: 14px;
   line-height: 1.3;
   color: #333;
   background-color: #f8f8f8;
-  overflow-y: auto; /* Introduce vertical scrollbar when content overflows vertically */
-  overflow-x: auto; /* Introduce horizontal scrollbar when content overflows horizontally */
-  white-space: pre-wrap; /* Preserve whitespace */
+  overflow-y: auto; 
+  overflow-x: auto; 
+  white-space: pre-wrap; 
 }
 
 #colorPicker {
-  width: 100px; /* Set width of the color picker */
-  height: 26px; /* Set height of the color picker */
-  border: solid #5c3faa; /* Remove default border */
+  width: 100px; 
+  height: 26px; 
+  border: solid #5c3faa; 
   border-width: 1px;
-  cursor: pointer; /* Change cursor to pointer */
+  cursor: pointer; 
   margin-top: 20px;
 }
 .font-selector-label {
@@ -194,7 +192,7 @@ textarea:focus {
 
 }
 .color-picker-label{
-  margin-left: 10px; /* Adjust spacing between the color picker and label */
+  margin-left: 10px; 
   font-family: 'Menlo';
   font-size: 14px;
   color: #423c3d;
@@ -218,12 +216,12 @@ textarea:focus {
 
 .clear-button, .copy-button {
   padding: 4px 16px;
-  background-color: #ffffff; /* Red color for button background */
-  color: #423c3d; /* White color for button text */
-  border: solid #5436a6; /* Remove button border */
+  background-color: #ffffff; 
+  color: #423c3d; 
+  border: solid #5436a6; 
   border-width: 1px;
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+  cursor: pointer; 
+  transition: background-color 0.3s, color 0.3s; 
   font-family: 'Menlo';
   font-size: 14px;
   margin-top: 20px;
@@ -232,11 +230,11 @@ textarea:focus {
 }
 
 .clear-button:hover, .copy-button:hover {
-  background-color: #dad3ff; /* Darker shade of red on hover */
+  background-color: #dad3ff; 
 }
 
 .footer {
-  grid-column: 1 / 3; /* Span across both columns */
+  grid-column: 1 / 3; 
   background-color: #fee98e;
   color: #423c3d;
   grid-row: 5 / 6;
