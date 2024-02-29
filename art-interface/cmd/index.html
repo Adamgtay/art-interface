@@ -23,18 +23,16 @@
                     <!-- Input section -->
                     <textarea name="input" placeholder="Input here..." rows="4"></textarea>
                 </div>
-                <!-- Color picker -->
                 <!-- Output section -->
                 <div class="output-section" id="outputDiv">{{.Output}}</div>
                 <label for="colorPicker">Change Colour</label>
                 <input type="color" class="color-picker" id="colorPicker" onchange="changeTextColor(this.value)">
-                 <!-- Font Selector -->
+                <!-- Font Selector -->
                 <label for="fontSelector" class="font-selector-label">Change Font</label>
                 <select id="fontSelector" class="font-selector" onchange="changeFont(this.value)">
                     <option value="Menlo">Menlo</option>
                     <option value="dogica">Dogica</option>
                     <option value="MS">Microsoft Sans Serif</option>
-                    <!-- Add more font options as needed -->
                 </select>
                 <button type="button" class="copy-button" onclick="copyOutput()">Copy Output</button>
                 <button type="button" class="clear-button" onclick="clearOutput()">Start Again</button>
