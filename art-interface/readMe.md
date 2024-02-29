@@ -31,7 +31,7 @@ Follow instructions in command line
 
     Copy and paste into web browser -> http://localhost:8080/
 
-![Webpage Main](art-interface/screenshots/Screenshot 2024-02-29 at 13.20.54.png)
+![Webpage Main](art-interface/screenshots/Screenshot-MAIN.png)
 
 Insert text to be encoded or decoded
 
