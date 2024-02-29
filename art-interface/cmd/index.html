@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Interface</title>
     <link rel="stylesheet" href="http://127.0.0.1:3000/art-interface/cmd/styles.css">
+    
 </head>
 <body>
     <div class="grid-container">
@@ -12,26 +13,76 @@
         <div class="header">Art Interface</div>
         <div class="options">
             <!-- Options section -->
-            <form action="/" method="POST">
+            <form id="artForm" action="/" method="POST">
                 <input type="radio" name="mode" value="encode" id="encode" checked>
                 <label for="encode">Encode</label>
                 <input type="radio" name="mode" value="decode" id="decode">
                 <label for="decode">Decode</label>
+                <button type="submit" class="submit-button">Generate</button>
                 <div class="input-section">
                     <!-- Input section -->
-                    <textarea name="input" placeholder="Enter text here..." rows="4"></textarea>
+                    <textarea name="input" placeholder="Input here..." rows="4"></textarea>
                 </div>
-                <button type="submit">Submit</button>
+                <!-- Color picker -->
                 <!-- Output section -->
-                <div class="output-section">
-                    {{if .Output}}
-                    <h2>Decoded Output:</h2>
-                    <pre>{{.Output}}</pre>
-                    {{end}}
-                </div>
+                <div class="output-section" id="outputDiv">{{.Output}}</div>
+                <label for="colorPicker">Change Color</label>
+                <input type="color" class="color-picker" id="colorPicker" onchange="changeTextColor(this.value)">
+                 <!-- Font Selector -->
+                <label for="fontSelector" class="font-selector-label">Change Font</label>
+                <select id="fontSelector" class="font-selector" onchange="changeFont(this.value)">
+                    <option value="Menlo">Menlo</option>
+                    <option value="dogica">Dogica</option>
+                    <option value="MS">Microsoft Sans Serif</option>
+                    <!-- Add more font options as needed -->
+                </select>
+                <button type="button" class="copy-button" onclick="copyOutput()">Copy Output</button>
+                <button type="button" class="clear-button" onclick="clearOutput()">Start Again</button>
             </form>
         </div>
         <div class="footer">Art Interface by Adam Taylor</div>
     </div>
+
+    <script>
+        function clearOutput() {
+            // Clear the content of the output div
+            document.getElementById('outputDiv').textContent = '';
+        }
+
+        function changeTextColor(color) {
+            // Change the text color dynamically
+            document.getElementById('outputDiv').style.color = color;
+        }
+
+        function changeFont(font) {
+            const outputDiv = document.getElementById('outputDiv');
+            outputDiv.style.fontFamily = font;
+        }
+
+        function copyOutput() {
+            // Select the output text area
+            var outputTextArea = document.getElementById('outputDiv');
+            
+            // Create a range object
+            var range = document.createRange();
+            
+            // Select the text inside the output text area
+            range.selectNode(outputTextArea);
+            
+            // Add the range to the clipboard
+            window.getSelection().addRange(range);
+            
+            // Execute the copy command
+            document.execCommand('copy');
+            
+            // Remove the range from the selection
+            window.getSelection().removeAllRanges();
+            
+            // Optionally provide feedback to the user
+            alert('Output copied to clipboard');
+        }
+
+
+    </script>
 </body>
 </html>

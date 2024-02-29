@@ -2,17 +2,20 @@ package art_interf
 
 import (
 	"strings"
+	"unicode/utf8"
 )
 
-// split into smaller functions
 func EncodeInput(inputString string) string {
+	// Replace non-breaking spaces with regular spaces
+	inputString = strings.ReplaceAll(inputString, "\u00A0", " ")
+
 	var finalArtEncoded string
 	var currentSymbol string
 	splitStringFromArgs := strings.Split(inputString, "\n")
 	for lineNum, line := range splitStringFromArgs {
 		duplicateSymbol := false
 		matchCount := 0
-		for i := 0; i <= len(line)-1; i++ {
+		for i := 0; i < utf8.RuneCountInString(line); i++ {
 			duplicateSymbol = isDuplicateSymbol(i, line)
 			if duplicateSymbol {
 				currentSymbol, matchCount = ifDuplicateSymbol(i, lineNum, matchCount, line, splitStringFromArgs)
@@ -28,9 +31,5 @@ func EncodeInput(inputString string) string {
 			}
 		}
 	}
-	//if finalArtEncoded[len(finalArtEncoded)-1] == '\n' {
-	//finalArtEncoded = finalArtEncoded[:len(finalArtEncoded)-1]
-	//fmt.Println(finalArtEncoded)
-
 	return finalArtEncoded
 }

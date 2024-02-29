@@ -1,10 +1,17 @@
 @font-face {
+  font-family: 'Menlo';
+  src: url('http://127.0.0.1:3000/art-interface/fonts/Menlo.ttc') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
   font-family: 'MS';
   src: url('http://127.0.0.1:3000/art-interface/fonts/Microsoft Sans Serif.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'dogica';
   src: url('http://127.0.0.1:3000/art-interface/fonts/dogica.ttf') format('truetype');
@@ -22,13 +29,14 @@ body, html {
 }
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 3fr; /* 1 column for sidebar, 3 columns for main content */
-  grid-template-rows: 20px 60px 40px auto 40px;  height: 90vh; width: 90vw;/* Full viewport height */
+  grid-template-columns: 1fr 1fr; /* 1 column for sidebar, 3 columns for main content */
+  grid-template-rows: 20px 60px auto 40px;  height: 90vh; width: 90vw;/* Full viewport height */
   border: solid #5c3faa;
   border-width: 1px;
+  height: auto;
 }
 
-.header, .options, .main-content, .footer, .yellow-tab, .input-section, .output-section {
+.header, .options, .footer, .yellow-tab, .output-section {
   padding: 20px;
   border: solid #5c3faa;
   border-width: 1px;
@@ -37,7 +45,7 @@ body, html {
 .header {
   grid-column: 1 / 3; /* Span across both columns */
   background-color: #ffffff;
-  color: #000000;
+  color: #423c3d;
   height: 50px;
   text-align: center;
   font-family: 'dogica';
@@ -54,35 +62,74 @@ body, html {
 
 .options {
   background-color: #ffffff;
-  grid-row: 3 / 4;
+  grid-row: 3 / 5;
   grid-column: 1 / 3; /* Span across both columns */
+  display: grid;
+  gap: 20px; /* Gap between input and output */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-content: center;
+  font-size: 14px;
+  font-family: 'Menlo';
+
 }
 
-.main-content {
-  background-color: #f0f0f0;
-  grid-row: 4 / 5;
-  grid-column: 1 / 3;
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns for input and output */
-  gap: 20px; /* Gap between input and output */
+/* Hide the radio buttons */
+input[type="radio"] {
+  display: none;
+
 }
+
+/* Style the labels to mimic radio buttons */
+input[type="radio"] + label {
+  display: inline-block;
+  padding: 4px 16px;
+  border: 1px solid #5436a6;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #423c3d;
+  transition: background-color 0.3s, color 0.3s;
+  margin-right: 10px;
+}
+
+/* Style the labels when radio buttons are checked */
+input[type="radio"]:checked + label {
+  background-color: #ffa9fe;
+  color: #423c3d;
+
+}
+
+/* Style the labels when radio buttons are checked */
+input[type="radio"]+label:hover {
+  background-color: #dad3ff;
+  color: #5436a6;
+
+}
+
+/* Style the submit button */
+.submit-button {
+  padding: 4px 20px; /* Adjust padding as needed */
+  background-color: #ffffff; /* Button background color */
+  color: #423c3d; /* Button text color */
+  border: solid #5436a6; /* Remove button border */
+  border-width: 1px;
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+  font-family: 'Menlo';
+  font-size: 14px;
+}
+
+.submit-button:hover {
+  background-color: #dad3ff; /* Darker shade of the background color */
+}
+
 
 .input-section {
   grid-column: 1 / 2;
-}
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 100px; /* Set the height as needed */
 
-.output-section {
-  grid-column: 2 / 3;
-}
-
-.footer {
-  grid-column: 1 / 3; /* Span across both columns */
-  background-color: #fee98e;
-  color: #000;
-  grid-row: 5 / 6;
-  font-family: 'dogica';
-  font-size: 8px;
-  text-align: center;
 }
 
 textarea {
@@ -92,7 +139,7 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   resize: none; /* Prevent resizing */
-  font-family: Arial, sans-serif;
+  font-family: 'Menlo';
   font-size: 14px;
   line-height: 1.5;
   color: #333;
@@ -101,11 +148,87 @@ textarea {
   overflow-x: auto; /* Introduce horizontal scrollbar when content overflows horizontally */
   white-space: nowrap; /* Prevent text wrapping */
 }
-
-
-
 textarea:focus {
   outline: none; /* Remove the default focus outline */
   border-color: #5c3faa; /* Change border color when focused */
 }
+
+.output-section {
+  grid-column: 2 / 3;
+  height: 100px; /* Set the height as needed */
+  width: calc(100% - 20px); /* 100% width minus the total padding of the input section */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; /* Prevent resizing */
+  font-family: 'Menlo';
+  font-size: 14px;
+  line-height: 1.3;
+  color: #333;
+  background-color: #f8f8f8;
+  overflow-y: auto; /* Introduce vertical scrollbar when content overflows vertically */
+  overflow-x: auto; /* Introduce horizontal scrollbar when content overflows horizontally */
+  white-space: pre-wrap; /* Preserve whitespace */
+}
+
+#colorPicker {
+  width: 100px; /* Set width of the color picker */
+  height: 26px; /* Set height of the color picker */
+  border: solid #5c3faa; /* Remove default border */
+  border-width: 1px;
+  cursor: pointer; /* Change cursor to pointer */
+  position: relative; /* Enable positioning */
+  bottom: -0.75%;
+  margin-left: 10px;
+}
+
+.color-picker-label, .font-selector-label {
+  margin-left: 10px; /* Adjust spacing between the color picker and label */
+  font-family: 'Menlo';
+  font-size: 14px;
+  color: #423c3d;
+}
+
+.font-selector {
+  font-family: 'Menlo';
+  font-size: 14px;
+  color: #423c3d;
+  padding: 4px;
+  border: solid #5c3faa;
+  border-width: 1px;
+  cursor: pointer;
+  margin-left: 10px;
+
+}
+
+
+.clear-button, .copy-button {
+  padding: 4px 16px;
+  background-color: #ffffff; /* Red color for button background */
+  color: #423c3d; /* White color for button text */
+  border: solid #5436a6; /* Remove button border */
+  border-width: 1px;
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+  font-family: 'Menlo';
+  font-size: 14px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.clear-button:hover, .copy-button:hover {
+  background-color: #dad3ff; /* Darker shade of red on hover */
+}
+
+.footer {
+  grid-column: 1 / 3; /* Span across both columns */
+  background-color: #fee98e;
+  color: #423c3d;
+  grid-row: 5 / 6;
+  font-family: 'dogica';
+  font-size: 8px;
+  text-align: center;
+}
+
+
 
