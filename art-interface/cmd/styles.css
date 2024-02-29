@@ -29,12 +29,15 @@ body, html {
 }
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 1 column for sidebar, 3 columns for main content */
-  grid-template-rows: 20px 60px auto 40px;  height: 90vh; width: 90vw;/* Full viewport height */
+  grid-template-columns: 1fr 1fr; /* 1 column for sidebar, 1 column for main content */
+  grid-template-rows: 20px 60px auto 20px; /* Full viewport height */
+  height: auto;
+  width: calc(90vw - 40px); /* Full viewport width with 20px padding on both sides */
   border: solid #5c3faa;
   border-width: 1px;
-  height: auto;
+  margin: 0 10px; /* Apply 20px padding on both left and right sides */
 }
+
 
 .header, .options, .footer, .yellow-tab, .output-section {
   padding: 20px;
@@ -68,10 +71,11 @@ body, html {
   gap: 20px; /* Gap between input and output */
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  align-content: center;
+  align-items: center; /* Vertically center align items */
+  justify-items: center; /* Horizontally center align items */
+  justify-content: space-between;
   font-size: 14px;
   font-family: 'Menlo';
-
 }
 
 /* Hide the radio buttons */
@@ -89,7 +93,9 @@ input[type="radio"] + label {
   background-color: #ffffff;
   color: #423c3d;
   transition: background-color 0.3s, color 0.3s;
-  margin-right: 10px;
+  margin-right: 20px;
+  grid-row: 1 / 3;
+  
 }
 
 /* Style the labels when radio buttons are checked */
@@ -102,7 +108,7 @@ input[type="radio"]:checked + label {
 /* Style the labels when radio buttons are checked */
 input[type="radio"]+label:hover {
   background-color: #dad3ff;
-  color: #5436a6;
+  color: #423c3d;
 
 }
 
@@ -177,16 +183,24 @@ textarea:focus {
   border: solid #5c3faa; /* Remove default border */
   border-width: 1px;
   cursor: pointer; /* Change cursor to pointer */
-  position: relative; /* Enable positioning */
-  bottom: -0.75%;
-  margin-left: 10px;
+  margin-top: 20px;
 }
+.font-selector-label {
+  font-family: 'Menlo';
+  font-size: 14px;
+  color: #423c3d;
+  margin-top: 20px;
+  margin-left: 20px;
 
-.color-picker-label, .font-selector-label {
+}
+.color-picker-label{
   margin-left: 10px; /* Adjust spacing between the color picker and label */
   font-family: 'Menlo';
   font-size: 14px;
   color: #423c3d;
+  margin-top: 20px;
+  margin-left: 20px;
+
 }
 
 .font-selector {
@@ -197,7 +211,7 @@ textarea:focus {
   border: solid #5c3faa;
   border-width: 1px;
   cursor: pointer;
-  margin-left: 10px;
+  margin-top: 20px;
 
 }
 
@@ -214,6 +228,7 @@ textarea:focus {
   font-size: 14px;
   margin-top: 20px;
   margin-left: 20px;
+
 }
 
 .clear-button:hover, .copy-button:hover {
@@ -228,6 +243,7 @@ textarea:focus {
   font-family: 'dogica';
   font-size: 8px;
   text-align: center;
+  
 }
 
 
